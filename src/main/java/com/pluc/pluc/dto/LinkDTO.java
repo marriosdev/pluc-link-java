@@ -38,7 +38,9 @@ public class LinkDTO implements Serializable {
     public String getLink_encurtado() {
         return link_encurtado;
     }
-
+    public void setLink_encurtado(String encurtado) {
+        this.link_encurtado = encurtado;
+    }
     public String getLink_original() {
         return link_original;
     }
