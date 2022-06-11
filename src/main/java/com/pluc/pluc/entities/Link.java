@@ -10,8 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "tb_link")
+@SQLDelete(sql = "UPDATE tb_link SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public class Link implements Serializable{
     
     @Id // Definindo que esse é o atributo de id 
@@ -27,16 +32,15 @@ public class Link implements Serializable{
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE default now()")
     Instant created_at;
     
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    Instant deleted_at;
+    Boolean deleted = Boolean.FALSE;
 
-    public Link(Long id, String shortened_link, String original_link, Instant created_at, Instant updated_at, Instant deleted_at) {
+    public Link(Long id, String shortened_link, String original_link, Instant created_at, Instant updated_at, Boolean deleted) {
         this.id = id;
         this.shortened_link = generate_shortened();
         this.original_link = original_link;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.deleted_at = deleted_at;
+        this.deleted = deleted;
     }
 
     public String generate_shortened() {
@@ -83,12 +87,10 @@ public class Link implements Serializable{
     public void setCreated_at(Instant created_at) {
         this.created_at = created_at;
     }
-
-    public Instant getDeleted_at() {
-        return deleted_at;
+    public Boolean getDeleted_at() {
+        return deleted ;
     }
-
-    public void setDeleted_at(Instant deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeleted(Boolean deleted ) {
+        this.deleted = deleted;
     }
 }

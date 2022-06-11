@@ -29,7 +29,6 @@ public class LinkService {
         return new LinkDTO(linkRepository.getById(id));
     }
 
-    @Transactional(readOnly = true)
     public LinkDTO insert(LinkDTO dto){
         Link entity = new Link();
         copyDtoToEntity(dto, entity);
@@ -42,5 +41,10 @@ public class LinkService {
         entity.setOriginal_link(dto.getOriginal_link());
         entity.setCreated_at(Instant.now());
         entity.setUpdated_at(Instant.now());
+        entity.setDeleted(false);
+    }
+    
+    public void delete(Long id) {
+        linkRepository.deleteById(id);
     }
 }
