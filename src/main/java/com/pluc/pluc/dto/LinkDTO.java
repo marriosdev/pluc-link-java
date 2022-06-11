@@ -3,53 +3,55 @@ package com.pluc.pluc.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.crypto.interfaces.PBEKey;
+
 import com.pluc.pluc.entities.Link;
 
 public class LinkDTO implements Serializable {
     Long id;
-    String link_encurtado;
-    String link_original;
-    Instant data_criacao;
-    Instant data_exclusao;
 
+    String shortened_link;
+    String original_link;
+    Instant updated_at;
+    Instant created_at;
+    Instant deleted_at;
+
+    public LinkDTO(Long id, String shortened_link, String original_link, Instant updated_at, Instant created_at, Instant deleted_at) {
+        this.id = id;
+        this.shortened_link = shortened_link;
+        this.original_link = original_link;
+        this.updated_at = updated_at;
+        this.created_at = created_at;
+        this.deleted_at = deleted_at;
+    }
     public LinkDTO() {
+        
     }
     
-    public LinkDTO(Long id, String link_encurtado, String link_original, Instant data_criacao, Instant data_exclusao) {
-        this.link_encurtado = link_encurtado;
-        this.link_original = link_original;
-        this.data_criacao = data_criacao;
-        this.data_exclusao = data_exclusao;
-        this.id = id;
-    }
-
     public LinkDTO(Link entity) {
-        this.id             = entity.getId();
-        this.link_encurtado = entity.getLink_encurtado();
-        this.link_original  = entity.getLink_original();
-        this.data_criacao   = entity.getData_criacao();
-        this.data_exclusao  = entity.getData_exclusao();
+        this.id = entity.getId();
+        this.shortened_link = entity.getShortened_link();
+        this.original_link = entity.getOriginal_link();
+        this.updated_at = entity.getUpdated_at();
+        this.created_at = entity.getCreated_at();
+        this.deleted_at = entity.getDeleted_at();
     }
-
     public Long getId() {
         return id;
     }
-
-    public String getLink_encurtado() {
-        return link_encurtado;
+    public String getShortened_link() {
+        return shortened_link;
     }
-    public void setLink_encurtado(String encurtado) {
-        this.link_encurtado = encurtado;
+    public String getOriginal_link() {
+        return original_link;
     }
-    public String getLink_original() {
-        return link_original;
+    public Instant getUpdated_at() {
+        return updated_at;
     }
-
-    public Instant getData_criacao() {
-        return data_criacao;
+    public Instant getCreated_at() {
+        return created_at;
     }
-
-    public Instant getData_exclusao() {
-        return data_exclusao;
-    }
+    public Instant getDeleted_at() {
+        return deleted_at;
+    }    
 }

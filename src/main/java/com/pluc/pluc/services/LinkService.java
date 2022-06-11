@@ -1,5 +1,6 @@
 package com.pluc.pluc.services;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -31,19 +32,15 @@ public class LinkService {
     @Transactional(readOnly = true)
     public LinkDTO insert(LinkDTO dto){
         Link entity = new Link();
-        // AInda vou criar o algoritmo que gera a string aleatoria
-        String aleatoria = "abcdefghxyz1234567-/@";
-        
-        dto.setLink_encurtado(aleatoria);
-
         copyDtoToEntity(dto, entity);
-        linkRepository.save(entity);
-        
+        entity = linkRepository.save(entity);
         return new LinkDTO(entity);
     }   
 
     private void copyDtoToEntity(LinkDTO dto, Link entity) {
-        entity.setLink_encurtado(dto.getLink_encurtado());
-        entity.setLink_original(dto.getLink_original());
+        entity.setShortened_link(entity.generate_shortened());
+        entity.setOriginal_link(dto.getOriginal_link());
+        entity.setCreated_at(Instant.now());
+        entity.setUpdated_at(Instant.now());
     }
 }

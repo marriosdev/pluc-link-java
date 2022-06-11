@@ -38,7 +38,7 @@ public class LinkResource {
     
     @PostMapping
     public ResponseEntity<LinkDTO> insert(@RequestBody LinkDTO dto) {
-        linkService.insert(dto);
+        dto = linkService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}")
                     .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
