@@ -2,7 +2,6 @@ package com.pluc.pluc.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Optional;
 
 import com.pluc.pluc.entities.Link;
 
