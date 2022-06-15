@@ -23,8 +23,10 @@ public class Link implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Define que o valor do id sera gerenciado pelo provedor de persistencia
     Long id;
 
-    String shortened_link;
-    String original_link;
+    @Column(unique=true)
+    String shortenedLink;
+
+    String originalLink;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE default now()")
     Instant updated_at;
@@ -34,20 +36,20 @@ public class Link implements Serializable{
     
     Boolean deleted = Boolean.FALSE;
 
-    public Link(Long id, String shortened_link, String original_link, Instant created_at, Instant updated_at, Boolean deleted) {
+    public Link(Long id, String shortenedLink, String originalLink, Instant created_at, Instant updated_at, Boolean deleted) {
         this.id = id;
-        this.shortened_link = generate_shortened();
-        this.original_link = original_link;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.deleted = deleted;
+        this.shortenedLink  = generate_shortened();
+        this.originalLink   = originalLink;
+        this.created_at     = created_at;
+        this.updated_at     = updated_at;
+        this.deleted        = deleted;
     }
 
     public String generate_shortened() {
-        String theAlphaNumericS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789"; 
-        StringBuilder  builder = new StringBuilder(6); 
+        String theAlphaNumericS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
+        StringBuilder  builder = new StringBuilder(10); 
 
-        for (int i = 0; i < 6; i++) { 
+        for (int i = 0; i < 10; i++) { 
             int myindex  = (int)(theAlphaNumericS.length() * Math.random()); 
             builder.append(theAlphaNumericS.charAt(myindex)); 
         } 
@@ -64,16 +66,16 @@ public class Link implements Serializable{
         this.id = id;
     }
     public String getShortened_link() {
-        return shortened_link;
+        return shortenedLink;
     }
-    public void setShortened_link(String shortened_link) {
-        this.shortened_link = shortened_link;
+    public void setShortened_link(String shortenedLink) {
+        this.shortenedLink = generate_shortened();
     }
     public String getOriginal_link() {
-        return original_link;
+        return originalLink;
     }
-    public void setOriginal_link(String original_link) {
-        this.original_link = original_link;
+    public void setOriginal_link(String originalLink) {
+        this.originalLink = originalLink;
     }
     public Instant getUpdated_at() {
         return updated_at;

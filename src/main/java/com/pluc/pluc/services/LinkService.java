@@ -2,7 +2,6 @@ package com.pluc.pluc.services;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import com.pluc.pluc.dto.LinkDTO;
@@ -37,7 +36,7 @@ public class LinkService {
     }   
 
     private void copyDtoToEntity(LinkDTO dto, Link entity) {
-        entity.setShortened_link(entity.generate_shortened());
+        entity.setShortened_link(entity.getShortened_link());
         entity.setOriginal_link(dto.getOriginal_link());
         entity.setCreated_at(Instant.now());
         entity.setUpdated_at(Instant.now());
@@ -46,5 +45,9 @@ public class LinkService {
     
     public void delete(Long id) {
         linkRepository.deleteById(id);
+    }
+
+    public LinkDTO findByShortened(String shortened) {
+        return new LinkDTO(linkRepository.findByShortenedLink(shortened));
     }
 }

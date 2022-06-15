@@ -1,7 +1,6 @@
 package com.pluc.pluc.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.support.Repositories;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,6 @@ import java.net.URI;
 import java.util.List;
 
 import com.pluc.pluc.dto.LinkDTO;
-import com.pluc.pluc.entities.Link;
 
 @RestController
 @RequestMapping(value="/link")
@@ -45,9 +43,16 @@ public class LinkResource {
                     .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<LinkDTO> delete(@PathVariable Long id) {
         linkService.delete(id);
         return ResponseEntity.noContent().build();
     }   
+    
+    @GetMapping("/s/{shortened}")
+    public ResponseEntity<LinkDTO> findByShortened(@PathVariable String shortened) {
+        LinkDTO dto = linkService.findByShortened(shortened);
+        return ResponseEntity.ok().body(dto);
+    }
 }
