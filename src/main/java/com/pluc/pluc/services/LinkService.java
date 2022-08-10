@@ -45,11 +45,11 @@ public class LinkService {
     }   
 
     private void copyDtoToEntity(LinkDTO dto, Link entity) {
-        entity.setShortened_link(entity.getShortened_link());
-        entity.setOriginal_link(dto.getOriginal_link());
-        entity.setCreated_at(Instant.now());
-        entity.setUpdated_at(Instant.now());
-        entity.setDeleted(false);
+        entity.setShortenedLink(entity.getShortenedLink());
+        entity.setOriginalLink(dto.getOriginalLink());
+        entity.setCreatedAt(Instant.now());
+        entity.setUpdatedAt(Instant.now());
+        entity.setDeletedAt(false);
     }
     
     public void delete(Long id) {

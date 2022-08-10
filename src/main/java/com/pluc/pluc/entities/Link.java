@@ -13,36 +13,41 @@ import javax.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
 @Entity
 @Table(name = "tb_link")
-@SQLDelete(sql = "UPDATE tb_link SET deleted = true WHERE id=?")
-@Where(clause = "deleted=false")
+@SQLDelete(sql = "UPDATE tb_link SET deleted_at = true WHERE id=?")
+@Where(clause = "deleted_at=false")
 public class Link implements Serializable{
     
     @Id // Definindo que esse é o atributo de id 
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Define que o valor do id sera gerenciado pelo provedor de persistencia
-    Long id;
+    @Getter @Setter  Long id;
 
     @Column(unique=true)
-    String shortenedLink;
+    @Getter @Setter  String shortenedLink;
 
-    String originalLink;
+    @Getter @Setter  String originalLink;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE default now()")
-    Instant updated_at;
+    @Getter @Setter  Instant updatedAt;
     
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE default now()")
-    Instant created_at;
+    @Getter @Setter  Instant createdAt;
     
-    Boolean deleted = Boolean.FALSE;
+    @Getter @Setter  Boolean deletedAt = Boolean.FALSE;
 
     public Link(Long id, String shortenedLink, String originalLink, Instant created_at, Instant updated_at, Boolean deleted) {
         this.id = id;
         this.shortenedLink  = generate_shortened();
         this.originalLink   = originalLink;
-        this.created_at     = created_at;
-        this.updated_at     = updated_at;
-        this.deleted        = deleted;
+        this.createdAt     = createdAt;
+        this.updatedAt     = updatedAt;
+        this.deletedAt        = deletedAt;
     }
 
     public String generate_shortened() {
@@ -54,45 +59,5 @@ public class Link implements Serializable{
             builder.append(theAlphaNumericS.charAt(myindex)); 
         } 
         return new String(builder);
-    }
-
-    public Link() {
-
-    }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getShortened_link() {
-        return shortenedLink;
-    }
-    public void setShortened_link(String shortenedLink) {
-        this.shortenedLink = generate_shortened();
-    }
-    public String getOriginal_link() {
-        return originalLink;
-    }
-    public void setOriginal_link(String originalLink) {
-        this.originalLink = originalLink;
-    }
-    public Instant getUpdated_at() {
-        return updated_at;
-    }
-    public void setUpdated_at(Instant updated_at) {
-        this.updated_at = updated_at;
-    }
-    public Instant getCreated_at() {
-        return created_at;
-    }
-    public void setCreated_at(Instant created_at) {
-        this.created_at = created_at;
-    }
-    public Boolean getDeleted_at() {
-        return deleted ;
-    }
-    public void setDeleted(Boolean deleted ) {
-        this.deleted = deleted;
     }
 }

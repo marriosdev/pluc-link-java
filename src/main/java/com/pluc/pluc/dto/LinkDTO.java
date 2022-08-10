@@ -5,51 +5,33 @@ import java.time.Instant;
 
 import com.pluc.pluc.entities.Link;
 
-public class LinkDTO implements Serializable {
-    Long id;
+import lombok.Getter;
 
-    String shortened_link;
-    String original_link;
-    Instant updated_at;
-    Instant created_at;
-    Boolean deleted;
+public class LinkDTO implements Serializable {
+    @Getter Long id;
+
+    @Getter String shortenedLink;
+    @Getter String originalLink;
+    @Getter Instant updatedAt;
+    @Getter Instant createdAt;
+    @Getter Boolean deletedAt;
 
     public LinkDTO(Long id, String shortened_link, String original_link, Instant updated_at, Instant created_at, Boolean deleted) {
         this.id = id;
-        this.shortened_link = shortened_link;
-        this.original_link = original_link;
-        this.updated_at = updated_at;
-        this.created_at = created_at;
-        this.deleted = deleted;
+        this.shortenedLink = shortened_link;
+        this.originalLink = original_link;
+        this.updatedAt = updated_at;
+        this.createdAt = created_at;
+        this.deletedAt = deleted;
     }
-    public LinkDTO() {
-        
-    }
+
     
     public LinkDTO(Link entity) {
         this.id = entity.getId();
-        this.shortened_link = entity.getShortened_link();
-        this.original_link = entity.getOriginal_link();
-        this.updated_at = entity.getUpdated_at();
-        this.created_at = entity.getCreated_at();
-        this.deleted = entity.getDeleted_at();
+        this.shortenedLink = entity.getShortenedLink();
+        this.originalLink = entity.getOriginalLink();
+        this.updatedAt = entity.getUpdatedAt();
+        this.createdAt = entity.getCreatedAt();
+        this.deletedAt = entity.getDeletedAt();
     }
-    public Long getId() {
-        return id;
-    }
-    public String getShortened_link() {
-        return shortened_link;
-    }
-    public String getOriginal_link() {
-        return original_link;
-    }
-    public Instant getUpdated_at() {
-        return updated_at;
-    }
-    public Instant getCreated_at() {
-        return created_at;
-    }
-    public Boolean getDeleted() {
-        return deleted;
-    }    
 }
