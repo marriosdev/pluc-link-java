@@ -10,15 +10,17 @@ import com.pluc.pluc.entities.Link;
 import com.pluc.pluc.repository.LinkRepository;
 import com.pluc.pluc.services.exceptions.ResourceEntityNotFoundException;
 
+import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@AllArgsConstructor
 public class LinkService {
 
-    @Autowired
     LinkRepository linkRepository;
 
     @Transactional(readOnly = true)

@@ -50,7 +50,7 @@ public class LinkResource {
         return ResponseEntity.noContent().build();
     }   
     
-    @GetMapping("/s/{shortened}")
+    @GetMapping("/redirect/{shortened}")
     public ResponseEntity<LinkDTO> findByShortened(@PathVariable String shortened) {
         LinkDTO dto = linkService.findByShortened(shortened);
         return ResponseEntity.ok().body(dto);
