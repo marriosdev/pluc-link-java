@@ -17,7 +17,7 @@ import lombok.Setter;
 @Table(name = "tb_role")
 @EqualsAndHashCode
 @NoArgsConstructor
-public class Role implements Serializable{
+public class Role{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Define que o valor do id sera gerenciado pelo provedor de persistencia
