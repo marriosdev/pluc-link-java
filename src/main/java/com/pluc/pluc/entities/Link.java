@@ -22,7 +22,7 @@ import lombok.Setter;
 @Table(name = "tb_link")
 @SQLDelete(sql = "UPDATE tb_link SET deleted_at = true WHERE id=?")
 @Where(clause = "deleted_at=false")
-public class Link implements Serializable{
+public class Link{
     
     @Id // Definindo que esse é o atributo de id 
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Define que o valor do id sera gerenciado pelo provedor de persistencia
