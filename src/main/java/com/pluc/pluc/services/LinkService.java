@@ -12,6 +12,7 @@ import com.pluc.pluc.services.exceptions.ResourceEntityNotFoundException;
 
 import lombok.AllArgsConstructor;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class LinkService {
 
-    LinkRepository linkRepository;
+    private LinkRepository linkRepository;
+    
+    private ModelMapper modelMapper;
 
     @Transactional(readOnly = true)
     public List<LinkDTO> findAll() {
@@ -40,19 +43,11 @@ public class LinkService {
 
     public LinkDTO insert(LinkDTO dto){
         Link entity = new Link();
-        copyDtoToEntity(dto, entity);
         entity = linkRepository.save(entity);
-        return new LinkDTO(entity);
+        LinkDTO linkDTO= modelMapper.map(entity, LinkDTO.class);
+        return linkDTO;
     }   
 
-    private void copyDtoToEntity(LinkDTO dto, Link entity) {
-        entity.setShortenedLink(entity.getShortenedLink());
-        entity.setOriginalLink(dto.getOriginalLink());
-        entity.setCreatedAt(Instant.now());
-        entity.setUpdatedAt(Instant.now());
-        entity.setDeletedAt(false);
-    }
-    
     public void delete(Long id) {
         try {
             linkRepository.deleteById(id);
