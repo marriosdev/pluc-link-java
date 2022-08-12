@@ -8,8 +8,8 @@ import com.pluc.pluc.entities.Link;
 import lombok.Getter;
 
 public class LinkDTO implements Serializable {
+    
     @Getter Long id;
-
     @Getter String shortenedLink;
     @Getter String originalLink;
     @Getter Instant updatedAt;
