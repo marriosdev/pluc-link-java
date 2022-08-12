@@ -41,13 +41,13 @@ public class Link{
     
     @Getter @Setter  Boolean deletedAt = Boolean.FALSE;
 
-    public Link(Long id, String shortenedLink, String originalLink, Instant created_at, Instant updated_at, Boolean deleted) {
-        this.id = id;
+    public Link(Long id, String shortenedLink, String originalLink, Instant createdAt, Instant updatedAt, Boolean deletedAt) {
+        this.id             = id;
         this.shortenedLink  = generate_shortened();
         this.originalLink   = originalLink;
-        this.createdAt     = createdAt;
-        this.updatedAt     = updatedAt;
-        this.deletedAt        = deletedAt;
+        this.createdAt      = createdAt;
+        this.updatedAt      = updatedAt;
+        this.deletedAt      = deletedAt;
     }
 
     public String generate_shortened() {

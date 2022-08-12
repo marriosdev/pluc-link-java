@@ -14,17 +14,14 @@ public class LinkDTO implements Serializable {
     @Getter String originalLink;
     @Getter Instant updatedAt;
     @Getter Instant createdAt;
-    @Getter Boolean deletedAt;
 
-    public LinkDTO(Long id, String shortened_link, String original_link, Instant updated_at, Instant created_at, Boolean deleted) {
+    public LinkDTO(Long id, String shortened_link, String original_link, Instant updated_at, Instant created_at) {
         this.id = id;
         this.shortenedLink = shortened_link;
         this.originalLink = original_link;
         this.updatedAt = updated_at;
         this.createdAt = created_at;
-        this.deletedAt = deleted;
     }
-
     
     public LinkDTO(Link entity) {
         this.id = entity.getId();
@@ -32,6 +29,5 @@ public class LinkDTO implements Serializable {
         this.originalLink = entity.getOriginalLink();
         this.updatedAt = entity.getUpdatedAt();
         this.createdAt = entity.getCreatedAt();
-        this.deletedAt = entity.getDeletedAt();
     }
 }
