@@ -43,21 +43,10 @@ public class Link{
 
     public Link(Long id, String shortenedLink, String originalLink, Instant createdAt, Instant updatedAt, Boolean deletedAt) {
         this.id             = id;
-        this.shortenedLink  = generate_shortened();
+        this.shortenedLink  = shortenedLink;
         this.originalLink   = originalLink;
         this.createdAt      = createdAt;
         this.updatedAt      = updatedAt;
         this.deletedAt      = deletedAt;
-    }
-
-    public String generate_shortened() {
-        String theAlphaNumericS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
-        StringBuilder  builder = new StringBuilder(10); 
-
-        for (int i = 0; i < 10; i++) { 
-            int myindex  = (int)(theAlphaNumericS.length() * Math.random()); 
-            builder.append(theAlphaNumericS.charAt(myindex)); 
-        } 
-        return new String(builder);
     }
 }
