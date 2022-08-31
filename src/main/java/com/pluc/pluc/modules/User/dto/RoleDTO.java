@@ -1,10 +1,10 @@
-package com.pluc.pluc.dto;
+package com.pluc.pluc.modules.User.dto;
 
 import java.io.Serializable;
 
 import org.hibernate.event.spi.PostUpdateEvent;
 
-import com.pluc.pluc.entities.Role;
+import com.pluc.pluc.modules.User.entities.Role;
 
 
 public class RoleDTO implements Serializable{

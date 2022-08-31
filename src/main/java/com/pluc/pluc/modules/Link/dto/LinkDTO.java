@@ -1,9 +1,9 @@
-package com.pluc.pluc.dto;
+package com.pluc.pluc.modules.Link.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
 
-import com.pluc.pluc.entities.Link;
+import com.pluc.pluc.modules.Link.entities.Link;
 
 import lombok.Getter;
 

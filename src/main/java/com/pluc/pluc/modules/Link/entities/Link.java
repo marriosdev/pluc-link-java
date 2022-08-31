@@ -1,4 +1,4 @@
-package com.pluc.pluc.entities;
+package com.pluc.pluc.modules.Link.entities;
 
 import java.time.Instant;
 import java.io.Serializable;

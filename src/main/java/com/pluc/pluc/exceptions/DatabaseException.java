@@ -1,4 +1,4 @@
-package com.pluc.pluc.services.exceptions;
+package com.pluc.pluc.exceptions;
 
 public class DatabaseException extends RuntimeException{
     private static final long  serialVersionUID = 1L;

@@ -14,7 +14,7 @@
 	<name>pluc</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -60,10 +60,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			    <configuration>
-					<release>8</release>
-					<verbose>true</verbose>
-				</configuration>
 		</plugins>
 	</build>
 

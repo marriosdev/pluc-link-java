@@ -1,4 +1,4 @@
-package com.pluc.pluc.resources.exceptions;
+package com.pluc.pluc.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;
