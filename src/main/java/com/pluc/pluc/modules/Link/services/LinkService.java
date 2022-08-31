@@ -1,14 +1,16 @@
-package com.pluc.pluc.services;
+package com.pluc.pluc.modules.Link.services;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.pluc.pluc.dto.LinkDTO;
-import com.pluc.pluc.entities.Link;
-import com.pluc.pluc.repository.LinkRepository;
-import com.pluc.pluc.services.exceptions.ResourceEntityNotFoundException;
+import com.pluc.pluc.components.validators.LinkValidator;
+import com.pluc.pluc.exceptions.InvalidOriginalLinkException;
+import com.pluc.pluc.exceptions.ResourceEntityNotFoundException;
+import com.pluc.pluc.modules.Link.dto.LinkDTO;
+import com.pluc.pluc.modules.Link.entities.Link;
+import com.pluc.pluc.modules.Link.repository.LinkRepository;
 import com.pluc.pluc.utils.Shortened;
 
 import lombok.AllArgsConstructor;
@@ -41,6 +43,10 @@ public class LinkService {
 
     @Transactional(readOnly = true)
     public LinkDTO insert(LinkDTO dto){
+        if(!LinkValidator.isValid(dto.getOriginalLink())) {
+            throw new InvalidOriginalLinkException("Link inválido");
+        }
+
         Link entity = new Link();
         entity.setShortenedLink(Shortened.generate());
         entity.setOriginalLink(dto.getOriginalLink());

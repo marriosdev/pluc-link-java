@@ -1,10 +1,11 @@
-package com.pluc.pluc.dto;
+package com.pluc.pluc.modules.User.dto;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.io.Serializable;
 
-import com.pluc.pluc.entities.User;
+import com.pluc.pluc.modules.User.entities.User;
+
+import java.io.Serializable;
 
 public class UserDTO implements Serializable {
 

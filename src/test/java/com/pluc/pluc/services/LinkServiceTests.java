@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.pluc.pluc.dto.LinkDTO;
-import com.pluc.pluc.entities.Link;
-import com.pluc.pluc.services.exceptions.ResourceEntityNotFoundException;
+import com.pluc.pluc.exceptions.ResourceEntityNotFoundException;
+import com.pluc.pluc.modules.Link.dto.LinkDTO;
+import com.pluc.pluc.modules.Link.entities.Link;
+import com.pluc.pluc.modules.Link.services.LinkService;
 
 @SpringBootTest
 @Transactional

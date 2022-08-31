@@ -1,4 +1,4 @@
-package com.pluc.pluc.entities;
+package com.pluc.pluc.modules.User.entities;
 
 import java.io.Serializable;
 
